@@ -1,0 +1,63 @@
+CREATE SCHEMA `erp`;
+
+CREATE TABLE `erp`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+CREATE TABLE `erp`.`roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `erp`.`user_roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `role_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `to_user_idx` (`user_id` ASC),
+  INDEX `to_role_idx` (`role_id` ASC),
+  CONSTRAINT `to_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `erp`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `to_role`
+    FOREIGN KEY (`role_id`)
+    REFERENCES `erp`.`roles` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `erp`.`clients` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `details` TEXT,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE `clients`
+ADD COLUMN `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN `last_modified` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+CREATE TABLE `erp`.`documents` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `options` TEXT NOT NULL,
+  `is_default` INT(1) NULL DEFAULT 0,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_modified` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+  
+
+CREATE TABLE `erp`.`providers` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `details` TEXT,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE `providers`
+ADD COLUMN `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN `last_modified` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+ADD COLUMN `is_default` INT(1) DEFAULT 0;

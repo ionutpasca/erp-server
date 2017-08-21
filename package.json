@@ -1,0 +1,40 @@
+{
+  "name": "erp-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm-run-all --parallel security-check eslint open",
+    "open": "nodemon server.js",
+    "security-check": "nsp check",
+    "eslint": "eslint **/*.js --ignore-pattern 'node_modules/'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovidiuionut94/erp-server.git"
+  },
+  "author": "Pasca Ovidiu Ionut",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ovidiuionut94/erp-server/issues"
+  },
+  "homepage": "https://github.com/ovidiuionut94/erp-server#readme",
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "djin": "1.0.12",
+    "express": "4.15.3",
+    "html-pdf": "2.1.0",
+    "lodash": "4.17.4",
+    "method-override": "2.3.9",
+    "promise-mysql": "3.0.2",
+    "swig": "1.4.2",
+    "winston": "2.3.1",
+    "winston-daily-rotate-file": "1.4.6"
+  },
+  "devDependencies": {
+    "eslint": "4.3.0",
+    "nodemon": "1.11.0",
+    "npm-run-all": "4.0.2"
+  }
+}

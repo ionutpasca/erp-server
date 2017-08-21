@@ -1,0 +1,22 @@
+<html>
+
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body style="">
+        <div class="provider" style="position: absolute;top: 0;left: 0;">
+            {% for x in provider %}
+                <p> {{x}} </p>
+            {% endfor %}
+        </div>
+
+        <div class="client" style="position: absolute;bottom: 0;right: 0; text-align: right">
+            {% for x in client %}
+                <p> {{x}} </p>
+            {% endfor %}
+        </div>
+
+    </body>
+
+</html>
